@@ -189,37 +189,7 @@ app.post('/identify', async (req, res) => {
   }
 });
 
-app.get('/stats', async (req, res) => {
-  try {
-    const totalPrimaryContacts = await prisma.contact.count({
-      where: { linkPrecedence: 'primary' },
-    });
 
-    const totalSecondaryContacts = await prisma.contact.count({
-      where: { linkPrecedence: 'secondary' },
-    });
-
-    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    const newContactsLast24Hours = await prisma.contact.count({
-      where: {
-        createdAt: {
-          gte: twentyFourHoursAgo,
-        },
-      },
-    });
-
-    return res.json({
-      totalPrimaryContacts,
-      totalSecondaryContacts,
-      totalContacts: totalPrimaryContacts + totalSecondaryContacts,
-      newContactsLast24Hours,
-    });
-
-  } catch (error) {
-    console.error('Error in /stats:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
