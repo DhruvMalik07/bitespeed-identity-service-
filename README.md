@@ -50,6 +50,22 @@ Endpoint to identify and reconcile user identities.
 }
 ```
 
+### GET /stats (Additional Feature)
+
+Provides basic analytics about the contacts in the system. This endpoint was added as an extra feature and was not part of the original BiteSpeed requirements.
+
+**Request Body:** None
+
+**Response:**
+```json
+{
+  "totalPrimaryContacts": number,
+  "totalSecondaryContacts": number,
+  "totalContacts": number,
+  "newContactsLast24Hours": number
+}
+```
+
 ## Examples
 
 1. Creating a new contact:
