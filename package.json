@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@prisma/client": "^5.9.1",
-    "express": "^4.18.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -24,4 +25,4 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
-} 
+}
