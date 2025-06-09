@@ -76,7 +76,7 @@ To protect the service from abuse and ensure fair usage, the API implements rate
 If this limit is exceeded, the API will respond with a `429:Too Many Requests` status code. The following headers are included in every response to help you track your usage:
 - `RateLimit-Limit`: The total number of requests allowed in the current window.
 - `RateLimit-Remaining`: The number of requests remaining in the current window.
-- `RateLimit-Reset`: The time at which the rate limit window will reset (in UTC epoch seconds).
+- `RateLimit-Reset`: The number of seconds remaining until the rate limit window resets.
 
 ## Examples
 
@@ -92,6 +92,27 @@ curl -X POST http://localhost:3000/identify \
 curl -X POST http://localhost:3000/identify \
   -H "Content-Type: application/json" \
   -d '{"email": "john@example.com"}'
+```
+
+### Testing the Rate Limiter (PowerShell)
+
+To easily check the rate limit status, a PowerShell script is included in the project.
+
+1.  **Start your server** in one terminal:
+    ```bash
+    npm run dev
+    ```
+
+2.  **In a new PowerShell terminal**, run the script:
+    ```powershell
+    .\\check-rate-limit.ps1
+    ```
+
+This will send a test request and display the current rate limit values (`Limit`, `Remaining`, and `Reset` in seconds) along with the server's JSON response.
+
+**Note:** If you encounter an error about script execution being disabled, run the following command in PowerShell to allow scripts for your current session, then try again:
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 ## Error Handling
