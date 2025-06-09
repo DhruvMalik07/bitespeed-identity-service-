@@ -50,7 +50,7 @@ Endpoint to identify and reconcile user identities.
 }
 ```
 
-### GET /stats (Additional Feature)
+### GET /stats
 
 Provides basic analytics about the contacts in the system. This endpoint was added as an extra feature and was not part of the original BiteSpeed requirements.
 
@@ -65,6 +65,33 @@ Provides basic analytics about the contacts in the system. This endpoint was add
   "newContactsLast24Hours": number
 }
 ```
+
+## Additional Features
+
+### GET /stats
+
+Provides basic analytics about the contacts in the system. This endpoint was added as an extra feature and was not part of the original BiteSpeed requirements.
+
+**Request Body:** None
+
+**Response:**
+```json
+{
+  "totalPrimaryContacts": number,
+  "totalSecondaryContacts": number,
+  "totalContacts": number,
+  "newContactsLast24Hours": number
+}
+```
+
+### Rate Limiting
+
+To protect the service from abuse and ensure fair usage, the API implements rate limiting. By default, each IP address is limited to **100 requests per 15 minutes**.
+
+If this limit is exceeded, the API will respond with a `429:Too Many Requests` status code. The following headers are included in every response to help you track your usage:
+- `RateLimit-Limit`: The total number of requests allowed in the current window.
+- `RateLimit-Remaining`: The number of requests remaining in the current window.
+- `RateLimit-Reset`: The time at which the rate limit window will reset (in UTC epoch seconds).
 
 ## Examples
 
