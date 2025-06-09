@@ -50,6 +50,7 @@ Endpoint to identify and reconcile user identities.
 }
 ```
 
+
 ## Additional Features
 
 ### GET /stats
